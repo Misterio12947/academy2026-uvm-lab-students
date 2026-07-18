@@ -1,0 +1,101 @@
+Command: /home/cesar.otamendi.v/Isolated/Academy2026/project/uvm_tb/control_verification/sim/./simv -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Jul 18 15:28 2026
+*Verdi* Loading libsscore_vcs202312.so
+FSDB Dumper for VCS, Release Verdi_V-2023.12-SP2-8, Linux x86_64/64bit, 06/05/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'control_standalone.fsdb'
+*Verdi* : Begin traversing the scope (tb_control), layer (0).
+*Verdi* : End of traversing.
+================================================================
+  TB standalone: control (FSM 4 estados)
+================================================================
+
+--- ESC 1: Reset asincrono lleva a RST_ST ---
+[PASS] RST_ST: datain_reg_en=1                                 | esperado=1  obtenido=1  @ 31000
+[PASS] RST_ST: cpu_rdy=0                                       | esperado=0  obtenido=0  @ 31000
+[PASS] RST_ST: aluin_reg_en=0                                  | esperado=0  obtenido=0  @ 31000
+[PASS] RST_ST: aluout_reg_en=0                                 | esperado=0  obtenido=0  @ 31000
+[PASS] RST_ST: memoryWrite=0                                   | esperado=0  obtenido=0  @ 31000
+[PASS] RST_ST: memoryRead=0                                    | esperado=0  obtenido=0  @ 31000
+
+--- ESC 2: Ciclo completo ADD ---
+[PASS] FETCH_DECODE: aluin_reg_en=1                            | esperado=1  obtenido=1  @ 36000
+[PASS] FETCH_DECODE: datain_reg_en=0                           | esperado=0  obtenido=0  @ 36000
+[PASS] FETCH_DECODE: cpu_rdy=0                                 | esperado=0  obtenido=0  @ 36000
+[PASS] FETCH_DECODE: in_select_a=01                            | esperado=0x1  obtenido=0x1  @ 36000
+[PASS] FETCH_DECODE: in_select_b=10                            | esperado=0x2  obtenido=0x2  @ 36000
+[PASS] EXECUTE: aluout_reg_en=1                                | esperado=1  obtenido=1  @ 46000
+[PASS] EXECUTE: aluin_reg_en=0                                 | esperado=0  obtenido=0  @ 46000
+[PASS] EXECUTE ADD: memoryRead=0                               | esperado=0  obtenido=0  @ 46000
+[PASS] EXECUTE ADD: memoryWrite=0                              | esperado=0  obtenido=0  @ 46000
+[PASS] EXECUTE: opcode=0000 (ADD)                              | esperado=0x0  obtenido=0x0  @ 46000
+[PASS] STORE: cpu_rdy=1 (pulso)                                | esperado=1  obtenido=1  @ 56000
+[PASS] STORE: datain_reg_en=1                                  | esperado=1  obtenido=1  @ 56000
+[PASS] STORE ADD: memoryWrite=0                                | esperado=0  obtenido=0  @ 56000
+[PASS] STORE: aluout_reg_en=0                                  | esperado=0  obtenido=0  @ 56000
+
+--- ESC 3: Ciclo LOAD ---
+[PASS] EXECUTE LOAD: memoryRead=1                              | esperado=1  obtenido=1  @ 96000
+[PASS] EXECUTE LOAD: selmux2=1                                 | esperado=1  obtenido=1  @ 96000
+[PASS] EXECUTE LOAD: memoryWrite=0                             | esperado=0  obtenido=0  @ 96000
+[PASS] EXECUTE LOAD: opcode=0101                               | esperado=0x5  obtenido=0x5  @ 96000
+[PASS] STORE LOAD: cpu_rdy=1                                   | esperado=1  obtenido=1  @ 106000
+[PASS] STORE LOAD: memoryWrite=0                               | esperado=0  obtenido=0  @ 106000
+
+--- ESC 4: Ciclo STORE ---
+[PASS] EXECUTE STORE: memoryWrite=0                            | esperado=0  obtenido=0  @ 146000
+[PASS] EXECUTE STORE: memoryRead=0                             | esperado=0  obtenido=0  @ 146000
+[PASS] STORE STORE: memoryWrite=1                              | esperado=1  obtenido=1  @ 156000
+[PASS] STORE STORE: cpu_rdy=1                                  | esperado=1  obtenido=1  @ 156000
+[PASS] STORE STORE: memoryRead=0                               | esperado=0  obtenido=0  @ 156000
+
+--- ESC 5: NOP no accede memoria ---
+[PASS] EXECUTE NOP0: memoryRead=0                              | esperado=0  obtenido=0  @ 196000
+[PASS] EXECUTE NOP0: memoryWrite=0                             | esperado=0  obtenido=0  @ 196000
+[PASS] STORE NOP0: memoryWrite=0                               | esperado=0  obtenido=0  @ 206000
+[PASS] STORE NOP0: cpu_rdy=1                                   | esperado=1  obtenido=1  @ 206000
+[PASS] EXECUTE NOP1: memoryRead=0                              | esperado=0  obtenido=0  @ 246000
+[PASS] STORE NOP1: memoryWrite=0                               | esperado=0  obtenido=0  @ 256000
+
+--- ESC 6: cpu_rdy es pulso de 1 ciclo ---
+[PASS] RST_ST: cpu_rdy=0                                       | esperado=0  obtenido=0  @ 281000
+[PASS] FETCH_DECODE: cpu_rdy=0                                 | esperado=0  obtenido=0  @ 286000
+[PASS] EXECUTE: cpu_rdy=0                                      | esperado=0  obtenido=0  @ 296000
+[PASS] STORE: cpu_rdy=1 (pulso ON)                             | esperado=1  obtenido=1  @ 306000
+[PASS] Next FETCH_DECODE: cpu_rdy=0                            | esperado=0  obtenido=0  @ 316000
+
+--- ESC 7: nvalid_data con p_error + feedback ---
+[PASS] p_error=1 + muxA=11: nvalid_data=1                      | esperado=1  obtenido=1  @ 356000
+[PASS] p_error=1 + muxB=11: nvalid_data=1                      | esperado=1  obtenido=1  @ 396000
+[PASS] p_error=1 sin feedback: nvalid_data=0                   | esperado=0  obtenido=0  @ 436000
+[PASS] p_error=0 con feedback: nvalid_data=0                   | esperado=0  obtenido=0  @ 476000
+
+--- ESC 8: Reset mid-instruccion ---
+[PASS] Reset mid-EXECUTE: aluin_reg_en=0                       | esperado=0  obtenido=0  @ 518000
+[PASS] Reset mid-EXECUTE: aluout_reg_en=0                      | esperado=0  obtenido=0  @ 518000
+[PASS] Reset mid-EXECUTE: datain_reg_en=1 (RST_ST)             | esperado=1  obtenido=1  @ 518000
+[PASS] Reset mid-EXECUTE: cpu_rdy=0                            | esperado=0  obtenido=0  @ 518000
+
+--- ESC 9: Back-to-back instructions ---
+[PASS] Instr 1 STORE: cpu_rdy=1                                | esperado=1  obtenido=1  @ 566000
+[PASS] Instr 2 FETCH: aluin_reg_en=1                           | esperado=1  obtenido=1  @ 576000
+[PASS] Instr 2 FETCH: cpu_rdy=0                                | esperado=0  obtenido=0  @ 576000
+[PASS] Instr 2 EXECUTE: opcode=0001 (SUB)                      | esperado=0x1  obtenido=0x1  @ 586000
+[PASS] Instr 2 EXECUTE: aluout_reg_en=1                        | esperado=1  obtenido=1  @ 586000
+[PASS] Instr 2 STORE: cpu_rdy=1                                | esperado=1  obtenido=1  @ 596000
+
+================================================================
+  Reporte final:
+    Checks totales : 56
+    PASS           : 56
+    FAIL           : 0
+  >>> ALL TESTS PASSED <<<
+================================================================
+$finish called from file "tb_control.sv", line 340.
+$finish at simulation time               616000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 616000 ps
+CPU Time:      0.250 seconds;       Data structure size:   0.0Mb
+Sat Jul 18 15:28:46 2026

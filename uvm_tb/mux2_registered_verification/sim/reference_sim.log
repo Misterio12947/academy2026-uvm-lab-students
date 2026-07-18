@@ -1,0 +1,54 @@
+Command: /home/cesar.otamendi.v/Isolated/Academy2026/project/uvm_tb/mux2_registered_verification/sim/./simv -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Jul 18 15:28 2026
+*Verdi* Loading libsscore_vcs202312.so
+FSDB Dumper for VCS, Release Verdi_V-2023.12-SP2-8, Linux x86_64/64bit, 06/05/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'mux2_registered_standalone.fsdb'
+*Verdi* : Begin traversing the scope (tb_mux2_registered), layer (0).
+*Verdi* : End of traversing.
+================================================================
+  TB standalone: mux2_registered (bus 2*WIDTH = 16 bits)
+================================================================
+
+--- ESC 1: Reset asincrono al arranque ---
+[PASS] Reset asincrono fuerza out=0                       | esperado=0x0000  obtenido=0x0000  @ 3000
+[PASS] Post-reset: out se mantiene en 0                   | esperado=0x0000  obtenido=0x0000  @ 11000
+
+--- ESC 2: Captura de cada select ---
+[PASS] sel=0 + wr_en=1 -> out=in1=AAAA                    | esperado=0xaaaa  obtenido=0xaaaa  @ 31000
+[PASS] sel=1 + wr_en=1 -> out=in2=BBBB                    | esperado=0xbbbb  obtenido=0xbbbb  @ 51000
+
+--- ESC 3: Hold con wr_en=0 ---
+[PASS] wr_en=0 + sel cambia a 0: out sigue BBBB           | esperado=0xbbbb  obtenido=0xbbbb  @ 66000
+[PASS] wr_en=0 + sel cambia a 1: out sigue BBBB           | esperado=0xbbbb  obtenido=0xbbbb  @ 76000
+
+--- ESC 4: Reset domina sobre wr_en ---
+[PASS] rst=1 + wr_en=1: reset gana, out=0                 | esperado=0x0000  obtenido=0x0000  @ 82000
+[PASS] rst sostenido durante posedge: out=0               | esperado=0x0000  obtenido=0x0000  @ 86000
+[PASS] Post-reset con wr_en=1: captura in1=AAAA           | esperado=0xaaaa  obtenido=0xaaaa  @ 96000
+
+--- ESC 5: Back-to-back writes alternando selects ---
+[PASS] B2B write sel=0 -> 1111                            | esperado=0x1111  obtenido=0x1111  @ 106000
+[PASS] B2B write sel=1 -> 2222                            | esperado=0x2222  obtenido=0x2222  @ 116000
+[PASS] B2B write sel=0 -> 1111 (vuelta)                   | esperado=0x1111  obtenido=0x1111  @ 126000
+[PASS] B2B write sel=1 -> 2222 (vuelta)                   | esperado=0x2222  obtenido=0x2222  @ 136000
+
+--- ESC 6: Cambio de din durante hold ---
+[PASS] Cambio de in2 con wr_en=0: out sigue 2222          | esperado=0x2222  obtenido=0x2222  @ 156000
+[PASS] wr_en=1 tras cambio de in2: out=CAFE               | esperado=0xcafe  obtenido=0xcafe  @ 166000
+
+================================================================
+  Reporte final:
+    Checks totales : 15
+    PASS           : 15
+    FAIL           : 0
+  >>> ALL TESTS PASSED <<<
+================================================================
+$finish called from file "tb_mux2_registered.sv", line 194.
+$finish at simulation time               186000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 186000 ps
+CPU Time:      0.250 seconds;       Data structure size:   0.0Mb
+Sat Jul 18 15:28:43 2026

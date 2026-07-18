@@ -1,0 +1,57 @@
+Command: /home/cesar.otamendi.v/Isolated/Academy2026/project/uvm_tb/regbank_verification/sim/./simv -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Jul 18 15:28 2026
+*Verdi* Loading libsscore_vcs202312.so
+FSDB Dumper for VCS, Release Verdi_V-2023.12-SP2-8, Linux x86_64/64bit, 06/05/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'regbank_standalone.fsdb'
+*Verdi* : Begin traversing the scope (tb_register_bank), layer (0).
+*Verdi* : End of traversing.
+================================================================
+  TB standalone: register_bank
+================================================================
+
+--- ESC 1: Reset asincrono al arranque ---
+[PASS] Reset asincrono fuerza out=0             | esperado=0x00  obtenido=0x00  @ 3000
+[PASS] Post-reset: out se mantiene en 0         | esperado=0x00  obtenido=0x00  @ 11000
+
+--- ESC 2: Write con wr_en=1 ---
+[PASS] Write captura in=0x5A en out             | esperado=0x5a  obtenido=0x5a  @ 26000
+[PASS] Write captura in=0xC3 en out             | esperado=0xc3  obtenido=0xc3  @ 36000
+
+--- ESC 3: Hold con wr_en=0 ---
+[PASS] Hold sostenido: out sigue en 0xC3        | esperado=0xc3  obtenido=0xc3  @ 46000
+[PASS] Hold sostenido: out sigue en 0xC3        | esperado=0xc3  obtenido=0xc3  @ 56000
+[PASS] Hold sostenido: out sigue en 0xC3        | esperado=0xc3  obtenido=0xc3  @ 66000
+[PASS] Hold sostenido: out sigue en 0xC3        | esperado=0xc3  obtenido=0xc3  @ 76000
+[PASS] Hold sostenido: out sigue en 0xC3        | esperado=0xc3  obtenido=0xc3  @ 86000
+
+--- ESC 4: Back-to-back writes ---
+[PASS] Back-to-back write [0]=0x11              | esperado=0x11  obtenido=0x11  @ 106000
+[PASS] Back-to-back write [1]=0x22              | esperado=0x22  obtenido=0x22  @ 116000
+[PASS] Back-to-back write [2]=0x33              | esperado=0x33  obtenido=0x33  @ 126000
+[PASS] Back-to-back write [3]=0x44              | esperado=0x44  obtenido=0x44  @ 136000
+
+--- ESC 5: Reset domina sobre wr_en ---
+[PASS] rst=1 + wr_en=1: reset gana, out=0       | esperado=0x00  obtenido=0x00  @ 142000
+[PASS] rst=1 sostenido durante posedge clk      | esperado=0x00  obtenido=0x00  @ 146000
+[PASS] Post-reset con wr_en=1: captura 0xBE     | esperado=0xbe  obtenido=0xbe  @ 156000
+
+--- ESC 6: Reset asincrono fuera de edge ---
+[PASS] Reset asincrono mid-cycle fuerza out=0   | esperado=0x00  obtenido=0x00  @ 168000
+[PASS] Libera reset mid-cycle: hold en 0        | esperado=0x00  obtenido=0x00  @ 171000
+
+================================================================
+  Reporte final:
+    Checks totales : 18
+    PASS           : 18
+    FAIL           : 0
+  >>> ALL TESTS PASSED <<<
+================================================================
+$finish called from file "tb_register_bank.sv", line 213.
+$finish at simulation time               191000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 191000 ps
+CPU Time:      0.250 seconds;       Data structure size:   0.0Mb
+Sat Jul 18 15:28:34 2026

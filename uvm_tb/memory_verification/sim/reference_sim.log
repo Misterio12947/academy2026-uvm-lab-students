@@ -1,0 +1,50 @@
+Command: /home/cesar.otamendi.v/Isolated/Academy2026/project/uvm_tb/memory_verification/sim/./simv -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Jul 18 15:28 2026
+*Verdi* Loading libsscore_vcs202312.so
+FSDB Dumper for VCS, Release Verdi_V-2023.12-SP2-8, Linux x86_64/64bit, 06/05/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'memory_standalone.fsdb'
+*Verdi* : Begin traversing the scope (tb_memory), layer (0).
+*Verdi* : End of traversing.
+================================================================
+  TB standalone: memory (8 palabras x 2*WIDTH bits)
+================================================================
+
+--- ESC 1: Write y read en misma direccion ---
+[PASS] Read addr[0] tras write CAFE                  | esperado=0xcafe  obtenido=0xcafe  @ 32000
+
+--- ESC 2: Multiples writes y reads ---
+[PASS] Read addr[1]=1111                             | esperado=0x1111  obtenido=0x1111  @ 112000
+[PASS] Read addr[2]=2222                             | esperado=0x2222  obtenido=0x2222  @ 114000
+[PASS] Read addr[3]=3333                             | esperado=0x3333  obtenido=0x3333  @ 116000
+[PASS] Read addr[7]=7777                             | esperado=0x7777  obtenido=0x7777  @ 118000
+
+--- ESC 3: memoryWrite=0 no escribe ---
+[PASS] addr[0] retuvo CAFE (no se escribio DEAD)     | esperado=0xcafe  obtenido=0xcafe  @ 132000
+
+--- ESC 4: memoryRead=0 gating de salida ---
+[PASS] Read=0: data_out debe ser 0                   | esperado=0x0000  obtenido=0x0000  @ 134000
+
+--- ESC 5: Lectura asincrona ---
+[PASS] Async read addr[1]                            | esperado=0x1111  obtenido=0x1111  @ 136000
+[PASS] Async read addr[2] (sin clk)                  | esperado=0x2222  obtenido=0x2222  @ 138000
+[PASS] Async read addr[7] (sin clk)                  | esperado=0x7777  obtenido=0x7777  @ 140000
+
+--- ESC 6: Overwrite en misma direccion ---
+[PASS] Overwrite addr[5]=BBBB (no AAAA)              | esperado=0xbbbb  obtenido=0xbbbb  @ 182000
+
+================================================================
+  Reporte final:
+    Checks totales : 11
+    PASS           : 11
+    FAIL           : 0
+  >>> ALL TESTS PASSED <<<
+================================================================
+$finish called from file "tb_memory.sv", line 169.
+$finish at simulation time               202000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 202000 ps
+CPU Time:      0.260 seconds;       Data structure size:   0.0Mb
+Sat Jul 18 15:28:37 2026
