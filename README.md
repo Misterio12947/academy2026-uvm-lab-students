@@ -66,7 +66,7 @@ Convenciones minimas:
 2. Clona tu fork al servidor `syn-sr` en tu `Isolated/`.
 3. Elige un bloque, lee `README.md` y `docs/TESTPLAN.md`.
 4. Escribe tu `sim/tb_<modulo>.sv`.
-5. Ejecuta `cd uvm_tb/<bloque>/sim && csh run.csh`.
+5. Ejecuta `cd uvm_tb/<bloque>/sim && bash run.csh`.
 6. Compara tu `sim.log` contra `sim/reference_sim.log`. Debes lograr
    `OK` == numero de escenarios del testplan y `ERR == 0`.
 7. Haz commit de tu TB en tu fork, en una rama por bloque
