@@ -1,0 +1,56 @@
+Command: /home/cesar.otamendi.v/Isolated/Academy2026/project/uvm_tb/mux4_registered_verification/sim/./simv -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Jul 16 23:40 2026
+*Verdi* Loading libsscore_vcs202312.so
+FSDB Dumper for VCS, Release Verdi_V-2023.12-SP2-8, Linux x86_64/64bit, 06/05/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'mux4_registered_standalone.fsdb'
+*Verdi* : Begin traversing the scope (tb_mux4_registered), layer (0).
+*Verdi* : End of traversing.
+================================================================
+  TB standalone: mux4_registered (WIDTH=8)
+================================================================
+
+--- ESC 1: Reset asincrono al arranque ---
+[PASS] Reset asincrono fuerza out=0                       | esperado=0x00  obtenido=0x00  @ 3000
+[PASS] Post-reset: out se mantiene en 0                   | esperado=0x00  obtenido=0x00  @ 11000
+
+--- ESC 2: Captura de cada select ---
+[PASS] sel=00 + wr_en=1 -> out=in1=AA                     | esperado=0xaa  obtenido=0xaa  @ 31000
+[PASS] sel=01 + wr_en=1 -> out=in2=BB                     | esperado=0xbb  obtenido=0xbb  @ 51000
+[PASS] sel=10 + wr_en=1 -> out=in3=CC                     | esperado=0xcc  obtenido=0xcc  @ 71000
+[PASS] sel=11 + wr_en=1 -> out=in4=DD                     | esperado=0xdd  obtenido=0xdd  @ 91000
+
+--- ESC 3: Hold con wr_en=0 ---
+[PASS] wr_en=0 + sel cambia a 00: out sigue DD            | esperado=0xdd  obtenido=0xdd  @ 106000
+[PASS] wr_en=0 + sel cambia a 10: out sigue DD            | esperado=0xdd  obtenido=0xdd  @ 116000
+
+--- ESC 4: Reset domina sobre wr_en ---
+[PASS] rst=1 + wr_en=1: reset gana, out=0                 | esperado=0x00  obtenido=0x00  @ 122000
+[PASS] rst sostenido durante posedge: out=0               | esperado=0x00  obtenido=0x00  @ 126000
+[PASS] Post-reset con wr_en=1: captura in4=DD             | esperado=0xdd  obtenido=0xdd  @ 136000
+
+--- ESC 5: Back-to-back writes ---
+[PASS] B2B write [00] -> 11                               | esperado=0x11  obtenido=0x11  @ 146000
+[PASS] B2B write [01] -> 22                               | esperado=0x22  obtenido=0x22  @ 156000
+[PASS] B2B write [10] -> 33                               | esperado=0x33  obtenido=0x33  @ 166000
+[PASS] B2B write [11] -> 44                               | esperado=0x44  obtenido=0x44  @ 176000
+
+--- ESC 6: Cambio de din durante hold ---
+[PASS] Cambio de in4 con wr_en=0: out sigue 44            | esperado=0x44  obtenido=0x44  @ 196000
+[PASS] wr_en=1 tras cambio de in4: out=EE                 | esperado=0xee  obtenido=0xee  @ 206000
+
+================================================================
+  Reporte final:
+    Checks totales : 17
+    PASS           : 17
+    FAIL           : 0
+  >>> ALL TESTS PASSED <<<
+================================================================
+$finish called from file "tb_mux4_registered.sv", line 198.
+$finish at simulation time               226000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 226000 ps
+CPU Time:      0.260 seconds;       Data structure size:   0.0Mb
+Thu Jul 16 23:40:33 2026

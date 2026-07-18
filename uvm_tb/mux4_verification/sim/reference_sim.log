@@ -1,0 +1,56 @@
+Command: /home/cesar.otamendi.v/Isolated/Academy2026/project/uvm_tb/mux4_verification/sim/./simv -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version V-2023.12-SP2-8_Full64; Runtime version V-2023.12-SP2-8_Full64;  Jul 16 23:08 2026
+*Verdi* Loading libsscore_vcs202312.so
+FSDB Dumper for VCS, Release Verdi_V-2023.12-SP2-8, Linux x86_64/64bit, 06/05/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'mux4_standalone.fsdb'
+*Verdi* : Begin traversing the scope (tb_mux4), layer (0).
+*Verdi* : End of traversing.
+================================================================
+  TB standalone: mux4 (4:1, WIDTH=8)
+================================================================
+
+--- ESC 1: Selects individuales ---
+[PASS] select=00 -> dout=din1=AA                     | esperado=0xaa  obtenido=0xaa
+[PASS] select=01 -> dout=din2=BB                     | esperado=0xbb  obtenido=0xbb
+[PASS] select=10 -> dout=din3=CC                     | esperado=0xcc  obtenido=0xcc
+[PASS] select=11 -> dout=din4=DD                     | esperado=0xdd  obtenido=0xdd
+
+--- ESC 2: Cambio dinamico de select ---
+[PASS] Cambio dinamico [00] -> 11                    | esperado=0x11  obtenido=0x11
+[PASS] Cambio dinamico [11] -> 44                    | esperado=0x44  obtenido=0x44
+[PASS] Cambio dinamico [01] -> 22                    | esperado=0x22  obtenido=0x22
+[PASS] Cambio dinamico [10] -> 33                    | esperado=0x33  obtenido=0x33
+
+--- ESC 3: Valores extremos ---
+[PASS] Todos zero: dout=0                            | esperado=0x00  obtenido=0x00
+[PASS] Todos max: dout=FF                            | esperado=0xff  obtenido=0xff
+
+--- ESC 4: Independencia entre entradas ---
+[PASS] Solo din1 activo                              | esperado=0x55  obtenido=0x55
+[PASS] Ruido en din2/3/4 no afecta                   | esperado=0x55  obtenido=0x55
+
+--- ESC 5: Barrido con patrones alternados ---
+[PASS] Barrido select=00 -> 5A                       | esperado=0x5a  obtenido=0x5a
+[PASS] Barrido select=01 -> A5                       | esperado=0xa5  obtenido=0xa5
+[PASS] Barrido select=10 -> 3C                       | esperado=0x3c  obtenido=0x3c
+[PASS] Barrido select=11 -> C3                       | esperado=0xc3  obtenido=0xc3
+
+--- ESC 6: Cambios rapidos ---
+[PASS] Ultimo del barrido rapido (i=7 -> select=11)  | esperado=0x08  obtenido=0x08
+
+================================================================
+  Reporte final:
+    Checks totales : 17
+    PASS           : 17
+    FAIL           : 0
+  >>> ALL TESTS PASSED <<<
+================================================================
+$finish called from file "tb_mux4.sv", line 148.
+$finish at simulation time                29000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 29000 ps
+CPU Time:      0.260 seconds;       Data structure size:   0.0Mb
+Thu Jul 16 23:08:45 2026
