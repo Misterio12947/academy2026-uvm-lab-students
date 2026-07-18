@@ -1,0 +1,31 @@
+# =====================================================
+# Artefactos de simulacion VCS
+# =====================================================
+csrc/
+simv
+simv.daidir/
+ucli.key
+inter.vpd
+DVEfiles/
+*.vpd
+*.fsdb
+*.vdb
+*.log
+!reference_sim.log
+
+# =====================================================
+# Editor / SO
+# =====================================================
+*.swp
+*.swo
+*~
+.DS_Store
+
+# =====================================================
+# Cobertura y bases de datos temporales
+# =====================================================
+coverage/
+merged_cov*/
+urgReport/
+novas.*
+verdiLog/
